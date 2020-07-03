@@ -1,0 +1,48 @@
+<template>
+  <nav>
+      <v-app-bar flat app class= "white">
+        <v-app-bar-nav-icon class = "grey--text " @click="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-title class = "text-uppercase">
+          <span class="font-weight-light grey--text ">Group</span>
+          <span class = "font-weight-bold grey--text  ">Connect</span>
+        </v-app-bar-title>
+
+        <v-spacer></v-spacer>
+        <v-btn depressed class = "grey--text">
+          <span>Sign Out</span>
+          <v-icon right>exit_to_app</v-icon>
+        </v-btn>
+      </v-app-bar>
+      <v-navigation-drawer app v-model="drawer" class="deep-purple lighten-2" >
+         <v-list>
+                <v-list-item v-for="link in links" :key=" link.text " router :to="link.route">
+                    <v-list-item-icon class="white--text">
+                        <v-icon>{{link.icon }}</v-icon>
+                    </v-list-item-icon>
+
+                    <v-list-item-content>
+                        <v-list-title-title class="white--text subtitle-2">{{ link.text }}</v-list-title-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+      </v-navigation-drawer>
+  </nav>
+</template>
+
+<script>
+// @ is an alias to /src
+
+
+export default {
+  data(){
+    return{
+      drawer: false,
+      links:[
+        {icon: 'dashboard', text: 'Home', route: '/' },
+        {icon: 'folder', text: 'My Projects', route: '/Projects' },
+        {icon: 'person', text: 'Team Members', route: '/Team' },
+      ]
+    }
+  }
+}
+</script>
