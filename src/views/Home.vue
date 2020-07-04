@@ -2,6 +2,26 @@
   <div class = "home">
     <h3 class = " grey--text">Homepage</h3>
     <v-container class= "my-15">
+      <v-layout row class = "mb-3">
+        <v-tooltip top>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn small depressed color = "grey lighten-4" @click="sortBy('title')" v-bind="attrs" v-on="on">
+              <v-icon left small> folder</v-icon>
+              <span class = "caption text-lowercase">By objective name</span>
+            </v-btn>
+          </template>
+          <span>Sort objectives by objective name</span>
+        </v-tooltip>
+        <v-tooltip top>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn small depressed color = "grey lighten-4" class = "mx-4" @click="sortBy('person')" v-bind="attrs" v-on="on">
+              <v-icon left small>person</v-icon>
+              <span class = "caption text-lowercase">By person</span>
+            </v-btn>
+          </template>
+          <span>Sort objectives by person</span>
+        </v-tooltip>
+      </v-layout>
       <v-card flat class = "grey lighten-4 my-2" v-for ="project in projects" :key="project.title">
         <v-layout row wrap :class=" `pa-3 project ${project.status}`">
           <v-flex xs12 md6>
@@ -39,6 +59,11 @@ export default {
         {title: 'Researching', person: 'Nate', due: 'June 20, 2020', status: 'overdue', content: 'Using databases and textbooks to research'},
         {title: 'Creating cover page', person: 'Chuck', due: 'July 20, 2020', status: 'completed', content: 'Drew an appealing cover page'},
       ]
+    }
+  },
+  methods: {
+    sortBy(prop){
+      this.projects.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
     }
   }
 }
