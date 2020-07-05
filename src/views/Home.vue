@@ -7,10 +7,10 @@
           <template v-slot:activator="{ on, attrs }">
             <v-btn small depressed color = "grey lighten-4" @click="sortBy('title')" v-bind="attrs" v-on="on">
               <v-icon left small> folder</v-icon>
-              <span class = "caption text-lowercase">By objective name</span>
+              <span class = "caption text-lowercase">By task name</span>
             </v-btn>
           </template>
-          <span>Sort objectives by objective name</span>
+          <span>Sort tasks by task names</span>
         </v-tooltip>
         <v-tooltip top>
           <template v-slot:activator="{ on, attrs }">
@@ -19,7 +19,7 @@
               <span class = "caption text-lowercase">By person</span>
             </v-btn>
           </template>
-          <span>Sort objectives by person</span>
+          <span>Sort tasks by person</span>
         </v-tooltip>
       </v-layout>
       <v-card flat class = "grey lighten-4 my-2" v-for ="project in projects" :key="project.title">
@@ -58,6 +58,7 @@ export default {
         {title: 'Working on introduction', person: 'Serena', due: 'July 10, 2020', status: 'ongoing', content: 'Awaiting the research to create an introduction.'},
         {title: 'Researching', person: 'Nate', due: 'June 20, 2020', status: 'overdue', content: 'Using databases and textbooks to research'},
         {title: 'Creating cover page', person: 'Chuck', due: 'July 20, 2020', status: 'completed', content: 'Drew an appealing cover page'},
+        {title: 'Reaching out to business partners', person: 'Blair', due: 'July 19,2020', status: 'ongoing', content: 'Emailing business partners and potential investors'}
       ]
     }
   },

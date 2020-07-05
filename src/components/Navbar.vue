@@ -49,7 +49,7 @@ export default {
       drawer: false,
       links:[
         {icon: 'dashboard', text: 'Home', route: '/' },
-        {icon: 'folder', text: 'My Projects', route: '/Projects' },
+        {icon: 'folder', text: 'My Tasks', route: '/Projects' },
         {icon: 'person', text: 'Team Members', route: '/Team' },
       ]
     }
