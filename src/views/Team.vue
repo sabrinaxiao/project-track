@@ -6,9 +6,9 @@
           <v-flex xs12 sm6 md4 lg3 v-for="person in team" :key="person.name" class="text-center">
               <v-card flat color= "grey lighten-4" class=" text-xs-center ma-3 ">
                   <v-responsive class="pt-4">
-                      <v-avatar size="100">
+                      <!--<v-avatar size="100">
                           <img :src="person.avatar"> 
-                      </v-avatar>
+                      </v-avatar> -->
                   </v-responsive>
                   <v-card-text>
                       <div class="black--text subheading">{{person.name}}</div>
@@ -29,18 +29,28 @@
 
 <script>
 // @ is an alias to /src
-
+import db from '@/fb'
 
 export default {
   data(){
       return{
           team:[
-              {name: 'Serena', role:'Web developer', avatar: '/avatar1.jpg'},
-              {name: 'Chuck', role: 'Graphic designer', avatar: '/avatar3.jpg'},
-              {name: 'Nate', role: 'Social Media Manager', avatar: '/avatar2.jpg'},
-              {name: 'Blair', role: 'Accountant', avatar: '/avatar4.jpg'}
+              
           ]
       }
+  },
+  created(){
+    db.collection('members').onSnapshot(res => {
+        const changes = res.docChanges();
+        changes.forEach(change => {
+            if(change.type === 'added'){
+                this.team.push({
+                    ...change.doc.data(),
+                    id: change.doc.id      
+                })
+            }
+        })
+    })
   }
 }
 </script>

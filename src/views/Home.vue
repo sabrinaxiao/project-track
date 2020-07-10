@@ -1,7 +1,7 @@
 <template>
   <div class = "home">
     <h3 class = " grey--text">Homepage</h3>
-    <v-container class= "my-15">
+    <v-container class= "my-10">
       <v-layout row class = "mb-3">
         <v-tooltip top>
           <template v-slot:activator="{ on, attrs }">
@@ -22,7 +22,9 @@
           <span>Sort tasks by person</span>
         </v-tooltip>
       </v-layout>
-      <v-card flat class = "grey lighten-4 my-2" v-for ="project in projects" :key="project.title">
+      <v-expansion-panels hover multiple accordion tile popout class="my-8">
+      <v-expansion-panel v-for ="project in projects" :key="project.title">
+        <v-expansion-panel-header>
         <v-layout row wrap :class=" `pa-3 project ${project.status}`">
           <v-flex xs12 md6>
             <div class = " mx-3 caption grey--text">Objective</div>
@@ -42,23 +44,25 @@
             </div>
           </v-flex>
         </v-layout>
-      </v-card>
+        </v-expansion-panel-header>
+      <v-expansion-panel-content>
+        <div class = " mx-3 subtitle-2"> {{project.content}} </div>
+      </v-expansion-panel-content>
+      </v-expansion-panel>
+      </v-expansion-panels>
     </v-container>
   </div>
 </template>
 
 <script>
+import db from '@/fb'
 // @ is an alias to /src
-
 
 export default {
   data(){
     return{
       projects:[
-        {title: 'Working on introduction', person: 'Serena', due: 'July 10, 2020', status: 'ongoing', content: 'Awaiting the research to create an introduction.'},
-        {title: 'Researching', person: 'Nate', due: 'June 20, 2020', status: 'overdue', content: 'Using databases and textbooks to research'},
-        {title: 'Creating cover page', person: 'Chuck', due: 'July 20, 2020', status: 'completed', content: 'Drew an appealing cover page'},
-        {title: 'Reaching out to business partners', person: 'Blair', due: 'July 19,2020', status: 'ongoing', content: 'Emailing business partners and potential investors'}
+        
       ]
     }
   },
@@ -66,6 +70,19 @@ export default {
     sortBy(prop){
       this.projects.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
     }
+  },
+  created(){
+    db.collection('tasks').onSnapshot(res => {
+        const changes = res.docChanges();
+        changes.forEach(change => {
+            if(change.type === 'added'){
+                this.projects.push({
+                    ...change.doc.data(),
+                    id: change.doc.id      
+                })
+            }
+        })
+    })
   }
 }
 </script>

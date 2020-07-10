@@ -8,12 +8,28 @@
         </v-app-bar-title>
 
         <v-spacer></v-spacer>
-        <v-btn depressed class = "grey--text">
+        <v-menu offset-y>
+            <template v-slot:activator="{on, attrs}">
+                <v-btn depressed 
+                v-bind = "attrs"
+                v-on="on">
+                    <v-icon left class = "grey--text">expand_more</v-icon>
+                    <span class = "grey--text">Menu</span>
+                    </v-btn>
+            </template>
+            <v-list>
+                <v-list-item 
+                v-for="link in links" :key="link.text" router :to="link.route">
+                    <v-list-item-title class = "subtitle-2">{{ link.text }}</v-list-item-title>
+                </v-list-item>
+            </v-list>
+        </v-menu>
+        <v-btn depressed class = "grey--text mx-5">
           <span>Sign Out</span>
           <v-icon right>exit_to_app</v-icon>
         </v-btn>
       </v-app-bar>
-      <v-navigation-drawer app v-model="drawer" class="deep-purple lighten-2" >
+      <v-navigation-drawer app v-model="drawer" class="blue-grey lighten-2" >
          <v-layout column align-center>
            <v-flex class="mt-5">
              <v-avatar size="100">
@@ -23,8 +39,11 @@
                Serena
              </p>
            </v-flex>
+           <v-flex>
+             <Popup />
+           </v-flex>
          </v-layout>
-         <v-list>
+         <v-list class = "my-5">
                 <v-list-item v-for="link in links" :key=" link.text " router :to="link.route">
                     <v-list-item-icon class="white--text">
                         <v-icon>{{link.icon }}</v-icon>
@@ -42,8 +61,9 @@
 <script>
 // @ is an alias to /src
 
-
+import Popup from './Popup'
 export default {
+  components: { Popup },
   data(){
     return{
       drawer: false,
