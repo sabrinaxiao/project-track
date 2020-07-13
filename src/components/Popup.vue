@@ -12,7 +12,7 @@
                     <v-form class="mt-7" ref="form">
                         <v-text-field label="Title" color = "blue-grey lighten-2" v-model="title"  prepend-icon="create" required :rules="titleRules"></v-text-field>
                         <v-text-field label="Person" color = "blue-grey lighten-2" v-model="person" prepend-icon="person" required :rules="nameRules"></v-text-field>
-                        <v-textarea label="Information" color = "blue-grey lighten-2" v-model="content" prepend-icon="edit" required :rules="infoRules"></v-textarea>
+                        <v-textarea :value="hi" label="Information" color = "blue-grey lighten-2" v-model="content" prepend-icon="edit" required :rules="infoRules"></v-textarea>
                         <v-col cols="12" sm="6" md="6">
                             <v-menu offset-y>
                                 <template v-slot:activator="{ on, attrs }">

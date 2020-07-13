@@ -6,7 +6,7 @@
             <v-expansion-panel v-for="project in myTasks" :key="project.title">
                 <v-expansion-panel-header>{{project.title}}</v-expansion-panel-header>
                 <v-expansion-panel-content>
-                    <div class="px-4 grey--text font-weight-bold"> due by {{project.due }} </div>
+                    <div class=" my-2 px-4 grey--text font-weight-bold"> due by {{project.due }} </div>
                    <div class="px-4 grey--text"> {{project.content}} </div>
                 </v-expansion-panel-content>
             </v-expansion-panel>

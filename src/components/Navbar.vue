@@ -35,6 +35,7 @@
              <v-avatar size="100">
                <img src="/avatar1.jpg">
              </v-avatar>
+             <GetStarted />
              <p class="white--text text-center subheading mt-1">
                Serena
              </p>
@@ -62,6 +63,7 @@
 // @ is an alias to /src
 
 import Popup from './Popup'
+
 export default {
   components: { Popup },
   data(){

@@ -46,7 +46,7 @@
         </v-layout>
         </v-expansion-panel-header>
       <v-expansion-panel-content>
-        <div class = " mx-3 subtitle-2"> {{project.content}} </div>
+        <div class = " mx-3 body-1"> {{project.content}} </div>
       </v-expansion-panel-content>
       </v-expansion-panel>
       </v-expansion-panels>

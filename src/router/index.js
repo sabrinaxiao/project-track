@@ -7,38 +7,57 @@ import Team from '../views/Team.vue'
 import Chat from '../views/Chat.vue'
 import Projects from '../views/Projects.vue'
 
+
 Vue.use(VueRouter)
 
   const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/Login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: {
+      requiresGuest: true
+    }
   },
   {
     path: '/Register',
     name: 'Register',
-    component: Register
+    component: Register,
+    meta: {
+      requiresGuest: true
+    }
   },
   {
     path: '/Team',
     name: 'Team',
-    component: Team
+    component: Team,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/Chat',
     name: 'Chat',
-    component: Chat
+    component: Chat,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/Projects',
     name: 'Projects',
-    component: Projects
+    component: Projects,
+    meta: {
+      requiresAuth: true
+    }
   },
 ]
 
